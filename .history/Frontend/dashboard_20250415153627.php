@@ -1,13 +1,13 @@
 <?php
-session_start(); 
+session_start(); // Start session to access user data
 
-
+// Check if the user is logged in
 if (!isset($_SESSION["user_id"])) {
-    header("Location: login.php"); 
+    header("Location: login.php"); // Redirect to login page if not logged in
     exit();
 }
 
-
+// Include the DB connection
 include 'db.php';
 
 

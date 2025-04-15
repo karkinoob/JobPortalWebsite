@@ -3,7 +3,7 @@ session_start();
 
 include 'db.php'; 
 
-
+// Initialize variables
 $email = $password = "";
 $emailErr = $passwordErr = $loginErr = "";
 
@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (empty($emailErr) && empty($passwordErr)) {
-        
+        // Fetch user from DB
         $stmt = $conn->prepare("SELECT id, name, email, password FROM users WHERE email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
