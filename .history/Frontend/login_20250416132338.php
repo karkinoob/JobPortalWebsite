@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["user_name"] = $name;
             $_SESSION["user_email"] = $email;
 
-            // Redirect to dashboard or job listing
+            // Redirecting to dashboard 
             header("Location: dashboard.php");
             exit();
         } else {
