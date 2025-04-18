@@ -40,6 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($stmt->num_rows > 0 && password_verify($password, $passwordDb)) {
 
+            // Setting the session variables on successful login
             $_SESSION["user_id"] = $id;
             $_SESSION["user_name"] = $name;
             $_SESSION["user_email"] = $email;

@@ -1,7 +1,7 @@
 <?php
 session_start(); 
 
-include "helper.php";
+include 
 include 'db.php'; 
 
 if (isset($_SESSION["admin_id"])) {
@@ -40,12 +40,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($stmt->num_rows > 0 && password_verify($password, $passwordDb)) {
 
+            // Setting the session variables on successful login
             $_SESSION["user_id"] = $id;
             $_SESSION["user_name"] = $name;
             $_SESSION["user_email"] = $email;
             $_SESSION["user_type"] = $type;
 
 
+            // Redirecting to dashboard if login 
             if($type==="user") {
                 header("Location: /user/dashboard.php");
             } else {
@@ -56,6 +58,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $loginErr = "Invalid email or password";
         }
     }
+}
+
+
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
 }
 ?>
 

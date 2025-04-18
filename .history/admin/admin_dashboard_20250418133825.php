@@ -1,0 +1,49 @@
+<?php
+// session_start();
+?>
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+</head>
+<body>
+    <h2>Welcome!</h2>
+    <p>This is the admin dashboard.</p>
+    <a href="../logout.php">Logout</a>
+</body>
+</html> -->
+
+
+<?php
+session_start();
+include '../config.php'; // DB connection
+
+// Only allow admins to access this page
+if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'admin') {
+    header("Location: ../login.php");
+    exit();
+}
+
+// Fetch all jobs
+$result = mysqli_query($conn, "SELECT * FROM jobs ORDER BY created_at DESC");
+
+if (mysqli_num_rows($result) > 0) {
+    echo "<h2>Posted Jobs</h2>";
+    while ($row = mysqli_fetch_assoc($result)) {
+        echo "<div>";
+        echo "<h3>" . $row['job_title'] . "</h3>";
+        echo "<p>Company: " . $row['company_name'] . "</p>";
+        echo "<p>Category: " . $row['job_category'] . "</p>";
+        echo "<p>Description: " . $row['description'] . "</p>";
+        echo "<p>Valid Till: " . $row['valid_till'] . "</p>";
+        echo "<p>Posted on: " . $row['created_at'] . "</p>";
+
+        
+        echo "</div><hr>";
+    }
+} else {
+    echo "No jobs posted yet.";
+}
+?>
+
