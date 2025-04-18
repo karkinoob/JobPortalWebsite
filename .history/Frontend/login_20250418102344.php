@@ -1,8 +1,12 @@
 <?php
 session_start(); 
 
-include 'db.php'; 
+include '../db.php'; 
 
+if (isset($_SESSION["admin_id"])) {
+   header("Location: ../admin/admin_dashboard.php");
+    exit();
+}
 
 $email = $password = "";
 $emailErr = $passwordErr = $loginErr = "";
@@ -31,14 +35,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bind_result($id, $name, $emailDb, $passwordDb);
         $stmt->fetch();
 
-        // Check if the user exists and password is correct
+        // Here we check if the user exists and password is correct
+        print_r()
+
         if ($stmt->num_rows > 0 && password_verify($password, $passwordDb)) {
-            // Set session variables on successful login
+
+            // Setting the session variables on successful login
             $_SESSION["user_id"] = $id;
             $_SESSION["user_name"] = $name;
             $_SESSION["user_email"] = $email;
 
-            // Redirect to dashboard or job listing
+            // Redirect to dashboard if login 
+
             header("Location: dashboard.php");
             exit();
         } else {
