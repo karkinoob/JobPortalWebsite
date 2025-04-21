@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $update_sql = "UPDATE jobs SET 
                    company_name = '$company', 
                    job_title = '$title', 
-                   job_description = '$desc', 
+                   jobdescription = '$desc', 
                    address = '$address', 
                    job_category = '$category', 
                    valid_till = '$valid_till'

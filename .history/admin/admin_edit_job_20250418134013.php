@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $update_sql = "UPDATE jobs SET 
                    company_name = '$company', 
                    job_title = '$title', 
-                   job_description = '$desc', 
+                   description = '$desc', 
                    address = '$address', 
                    job_category = '$category', 
                    valid_till = '$valid_till'
@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="text" name="job_title" value="<?= $job['job_title'] ?>" required><br><br>
 
         <label>Job Description:</label>
-        <textarea name="job_description" rows="5" required><?= $job['job_description'] ?></textarea><br><br>
+        <textarea name="job_description" rows="5" required><?= $job['description'] ?></textarea><br><br>
 
         <label>Address:</label>
         <input type="text" name="address" value="<?= $job['address'] ?>" required><br><br>
