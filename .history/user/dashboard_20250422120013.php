@@ -18,7 +18,8 @@ $user_id = $_SESSION["user_id"];
 $user_name = $_SESSION["user_name"];
 $user_email = $_SESSION["user_email"];
 
-$stmt = $conn->prepare("SELECT job_title, job_description FROM jobs ORDER by id DESC");
+$stmt = $conn->prepare("SELECT job_title, job_description FROM jobs WHERE order by id DESC");
+$stmt->bind_param("i", $user_id);
 $stmt->execute();
 $stmt->store_result();
 $stmt->bind_result($job_title, $job_description);
@@ -51,7 +52,7 @@ $stmt->bind_result($job_title, $job_description);
         <div class="col-md-4">
             <div class="card shadow-sm mb-4">
                 <div class="card-header bg-primary text-white">
-                    <strong>Available Jobs</strong>
+                    <strong>Your Job Listings</strong>
                 </div>
                 <div class="card-body">
                     <?php if ($stmt->num_rows > 0): ?>

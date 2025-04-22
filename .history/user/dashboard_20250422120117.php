@@ -51,7 +51,7 @@ $stmt->bind_result($job_title, $job_description);
         <div class="col-md-4">
             <div class="card shadow-sm mb-4">
                 <div class="card-header bg-primary text-white">
-                    <strong>Available Jobs</strong>
+                    <strong>Your Job Listings</strong>
                 </div>
                 <div class="card-body">
                     <?php if ($stmt->num_rows > 0): ?>
