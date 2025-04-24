@@ -66,6 +66,7 @@ $job_count = mysqli_num_rows($result);
 
                 <!-- Buttons -->
                 <a href="admin_edit_job.php?id=<?php echo $row['id']; ?>" class="btn btn-warning btn-sm btn-action">✏️ Edit</a>
+                <a href="admin_delete_job.php?id=<?php echo $row['id']; ?>" class="btn btn-danger btn-sm btn-action" onclick="return confirm('Are you sure you want to delete this job?')">🗑️ Delete</a>
                 <a href="admin_view_applications.php?job_id=<?php echo $row['id']; ?>" class="btn btn-info btn-sm">📄 View Applications</a>
             </div>
         </div>

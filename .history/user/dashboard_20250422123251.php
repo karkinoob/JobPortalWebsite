@@ -18,7 +18,7 @@ $user_id = $_SESSION["user_id"];
 $user_name = $_SESSION["user_name"];
 $user_email = $_SESSION["user_email"];
 
-$stmt = $conn->prepare("SELECT id, job_title, job_description FROM jobs ORDER by id DESC");
+$stmt = $conn->prepare("SELECT job_title, job_description FROM jobs ORDER by id DESC");
 $stmt->execute();
 $stmt->store_result();
 $stmt->bind_result($job_id,$job_title, $job_description);
@@ -59,9 +59,7 @@ $stmt->bind_result($job_id,$job_title, $job_description);
                             <?php while ($stmt->fetch()): ?>
                                 <li class="list-group-item">
                                     <strong><?= htmlspecialchars($job_title) ?>:</strong><br>
-                                    <?= htmlspecialchars($job_description) ?> <br>
-                                    <a href="job_detail.php?id=<?= $job_id ?>" class="btn btn-sm btn-primary mt-2">View Details</a>
-                                    <a href="apply_job.php?id=<?= $job_id ?>" class="btn btn-sm btn-success mt-2 ms-2">Apply</a>
+                                    <?= htmlspecialchars($job_description) ?>
                                 </li>
                             <?php endwhile; ?>
                         </ul>

@@ -6,10 +6,10 @@ if (isset($_SESSION['user_id'])) {
     $islogin = null;
 }
 
-if ($islogin) {
+if($islogin){
     header("Location: user/dashboard.php");
     exit;
-} else {
+}else{
     header("Location:login.php");
     exit;
 }
