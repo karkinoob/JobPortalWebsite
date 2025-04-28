@@ -48,7 +48,7 @@ $job_count = mysqli_num_rows($result);
 <div class="container mt-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2 class="dashboard-header mb-0">Posted Jobs (<?php echo $job_count; ?>)</h2>
-        <a href="admin_post_job.php" class="btn btn-success btn-lg">➕ Post New Job</a> 
+        <a href="admin_post_job.php" class="btn btn-success btn-lg">➕ Post New Job</a>
     </div>
 
     <?php

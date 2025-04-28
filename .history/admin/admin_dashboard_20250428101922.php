@@ -48,20 +48,16 @@ $job_count = mysqli_num_rows($result);
 <div class="container mt-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2 class="dashboard-header mb-0">Posted Jobs (<?php echo $job_count; ?>)</h2>
-        <a href="admin_post_job.php" class="btn btn-success btn-lg">➕ Post New Job</a> 
+        <a href="admin_post_job.php" class="btn btn-success btn-lg">➕ Post New Job</a>
     </div>
 
     <?php
     if ($job_count > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
 
-            $job_id = $row['id'];
-            $app_sql = "SELECT COUNT(*) AS total_applications FROM applications WHERE job_id = $job_id";
-            $app_result = mysqli_query($conn, $app_sql);
-            $app_row = mysqli_fetch_assoc($app_result);
-            $total_applications = $app_row['total_applications'];
 
 
+            
     ?>
         <div class="card mb-4 job-card">
             <div class="card-body">
