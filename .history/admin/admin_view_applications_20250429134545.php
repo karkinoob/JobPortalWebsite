@@ -1,6 +1,7 @@
 <?php
+session_start();
 include '../db.php';
-include '../header.php';
+include
 
 // Only allow admins
 if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] != 'admin') {
@@ -35,6 +36,7 @@ $result = mysqli_query($conn, $sql);
 
 <div class="container mt-4">
     <h2>Applications for <span class="text-primary"><?php echo $job['job_title']; ?></span></h2>
+    <a href="admin_dashboard.php" class="btn btn-secondary mb-3">← Back to Dashboard</a>
 
     <?php if (mysqli_num_rows($result) > 0): ?>
         <div class="table-responsive">

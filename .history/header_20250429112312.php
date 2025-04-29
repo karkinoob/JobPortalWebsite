@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-//admin login checking  
+//admin login checking
 if (isset($_SESSION["user_type"])) {
     $type = $_SESSION["user_type"]; 
 } else {
@@ -12,10 +12,14 @@ if ($type === null) {
     header("Location: login.php");
     exit();
 }
+
+// If the user is a normal user (not admin), send them to user dashboard
 if ($type === "user") {
     header("Location: user/dashboard.php");
     exit();
 }
+
+// Get the logged-in user's name
 $user_name = $_SESSION["user_name"];
 ?>
 

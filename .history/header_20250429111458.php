@@ -1,21 +1,18 @@
 <?php
 session_start();
 
-//admin login checking  
-if (isset($_SESSION["user_type"])) {
-    $type = $_SESSION["user_type"]; 
-} else {
-    $type = null; 
-}
-
-if ($type === null) {
+//admin login checking
+$type = $_SESSION["user_type"] ?? null;
+if (!isset($type)) {
     header("Location: login.php");
     exit();
 }
-if ($type === "user") {
+
+if($type === "user") {
     header("Location: user/dashboard.php");
     exit();
 }
+
 $user_name = $_SESSION["user_name"];
 ?>
 
@@ -28,27 +25,27 @@ $user_name = $_SESSION["user_name"];
     <style>
         
         .navbar {
-            background-color: #343a40; 
+            background-color: #343a40; /* Dark background color */
         }
         .navbar-brand {
             font-size: 1.5rem;
             font-weight: bold;
-            color: white !important; 
+            color: white !important; /* Ensures the brand text is white */
         }
         .navbar .btn-danger {
             font-size: 1rem;
             padding: 8px 15px;
-            background-color: #dc3545; 
+            background-color: #dc3545; /* Red color for the logout button */
             border: none;
         }
         .navbar .btn-danger:hover {
-            background-color: #c82333;
+            background-color: #c82333; /* Darker red on hover */
         }
     </style>
 </head>
 <body>
 
-
+<!-- Navbar Section -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark"> 
     <div class="container-fluid">
         <span class="navbar-brand">Admin Dashboard</span>

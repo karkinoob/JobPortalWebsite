@@ -1,21 +1,18 @@
 <?php
 session_start();
 
-//admin login checking  
-if (isset($_SESSION["user_type"])) {
-    $type = $_SESSION["user_type"]; 
-} else {
-    $type = null; 
-}
-
-if ($type === null) {
+//admin login checking
+$type = $_SESSION["user_type"] ?? null;
+if (!isset($type)) {
     header("Location: login.php");
     exit();
 }
-if ($type === "user") {
+
+if($type === "user") {
     header("Location: user/dashboard.php");
     exit();
 }
+
 $user_name = $_SESSION["user_name"];
 ?>
 

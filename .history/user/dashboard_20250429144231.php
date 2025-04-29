@@ -53,7 +53,7 @@ $stmt->bind_result($job_id,$job_title, $job_description);
                 <div class="card-header bg-primary text-white">
                     <strong>Available Jobs</strong>
                 </div> 
-                <div class="card-body"> 
+                <div class="card-body">
                     <?php if ($stmt->num_rows > 0): ?>
                         <ul class="list-group">
                             <?php while ($stmt->fetch()): ?>

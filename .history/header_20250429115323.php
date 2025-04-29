@@ -16,7 +16,7 @@ if ($type === "user") {
     header("Location: user/dashboard.php");
     exit();
 }
-$user_name = $_SESSION["user_name"];
+$user_name = 
 ?>
 
 <!DOCTYPE html>
