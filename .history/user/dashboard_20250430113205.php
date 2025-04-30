@@ -1,0 +1,108 @@
+<?php
+session_start();
+
+// Redirect if not logged in
+if (!isset($_SESSION["user_type"])) {
+    header("Location: login.php");
+    exit();
+}
+
+// Redirect admin users
+if ($_SESSION["user_type"] === "admin") {
+    header("Location: ../admin/admin_dashboard.php");
+    exit();
+}
+
+include '../db.php';
+
+$user_id = $_SESSION["user_id"];
+$user_name = $_SESSION["user_name"];
+$user_email = $_SESSION["user_email"];
+
+// Fetch jobs
+$stmt = $conn->prepare("SELECT id, job_title, job_description FROM jobs ORDER BY id DESC");
+$stmt->execute();
+$stmt->store_result();
+$stmt->bind_result($job_id, $job_title, $job_description);
+
+$jobList = [];
+while ($stmt->fetch()) {
+    $jobList[] = [
+        'id' => $job_id,
+        'title' => $job_title,
+        'description' => $job_description
+    ];
+}
+$stmt->close();
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>User Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <span class="navbar-brand">User Dashboard</span>
+            <div class="ms-auto d-flex">
+                <a href="edit_profile.php" class="btn btn-outline-light me-2">Edit Profile</a>
+                <a href="../logout.php" class="btn btn-danger">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container my-4">
+        <div class="row g-4">
+            <!-- Profile Card -->
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h4 class="card-title">Welcome, <?= htmlspecialchars($user_name) ?>!</h4>
+                        <p class="card-text"><strong>Email:</strong> <?= htmlspecialchars($user_email) ?></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Jobs Listing -->
+            <div class="col-md-8">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <strong>Available Jobs</strong>
+                    </div>
+                    <div class="card-body">
+                        <?php if (!empty($jobList)): ?>
+                            <div class="list-group">
+                                <?php foreach ($jobList as $job): ?>
+                                    <div class="list-group-item">
+                                        <h5 class="mb-1"><?= htmlspecialchars($job['title']) ?></h5>
+                                        <p class="mb-1"><?= htmlspecialchars($job['description']) ?></p>
+                                        <div class="d-flex">
+                                            <a href="job_detail.php?id=<?= $job['id'] ?>" class="btn btn-sm btn-primary me-2">View Details</a>
+                                            <a href="apply_job.php?id=<?= $job['id'] ?>" class="btn btn-sm btn-success">Apply</a>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                        <?php else: ?>
+                            <p class="text-muted">No jobs listed yet.</p>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
