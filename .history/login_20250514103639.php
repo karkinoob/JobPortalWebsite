@@ -1,21 +1,21 @@
 <?php
 session_start(); 
 
-include "helper.php"; 
+include "helper.php";
 include 'db.php'; 
 
-if (isset($_SESSION["admin_id"])) { 
-    header("Location: ../admin/admin_dashboard.php"); 
+if (isset($_SESSION["admin_id"])) {
+    header("Location: ../admin/admin_dashboard.php");
     exit();
 }
 
-$email = $password = ""; 
-$emailErr = $passwordErr = $loginErr = ""; 
+$email = $password = "";
+$emailErr = $passwordErr = $loginErr = "";
 
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") { 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    if (empty($_POST["email"])) { 
+    if (empty($_POST["email"])) {
         $emailErr = "Email is required";
     } else {
         $email = test_input($_POST["email"]);

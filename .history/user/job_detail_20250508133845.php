@@ -5,7 +5,7 @@ include '../db.php';
 if (!isset($_GET['id'])) {
     echo "Job ID not found.";
     exit();
-}
+}php
 
 $job_id = intval($_GET['id']); 
 
@@ -43,7 +43,7 @@ $job = $result->fetch_assoc();
     <?php if (isset($_SESSION['user_id'])): ?>
         <a href="apply_job.php?id=<?php echo $job['id']; ?>" class="btn btn-success">Apply Now</a>
     <?php else: ?>
-        <p class="text-danger">You must <a href="../login.php">login</a> to apply.</p> 
+        <p class="text-danger">You must <a href="../login.php">login</a> to apply.</p>
     <?php endif; ?>
 
 </body>

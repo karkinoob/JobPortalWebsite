@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 include '../db.php';
 
@@ -34,7 +34,7 @@ $job = $result->fetch_assoc();
     <a href="dashboard.php" class="btn btn-secondary mb-3">← Back to Dashboard</a>
 
     <h2><?php echo htmlspecialchars($job['job_title']); ?></h2>
-    <p><strong>Company:</strong> <?=  htmlspecialchars($job['company_name']); ?></p>
+    <p><strong>Company:</strong> <?= echo htmlspecialchars($job['company_name']); ?></p>
     <p><strong>Location:</strong> <?php echo htmlspecialchars($job['address']); ?></p>
     <p><strong>Category:</strong> <?php echo htmlspecialchars($job['job_category']); ?></p>
     <p><strong>Deadline:</strong> <?php echo htmlspecialchars($job['valid_till']); ?></p>
@@ -43,7 +43,7 @@ $job = $result->fetch_assoc();
     <?php if (isset($_SESSION['user_id'])): ?>
         <a href="apply_job.php?id=<?php echo $job['id']; ?>" class="btn btn-success">Apply Now</a>
     <?php else: ?>
-        <p class="text-danger">You must <a href="../login.php">login</a> to apply.</p> 
+        <p class="text-danger">You must <a href="../login.php">login</a> to apply.</p>
     <?php endif; ?>
 
 </body>

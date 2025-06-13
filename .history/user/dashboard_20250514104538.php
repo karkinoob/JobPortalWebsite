@@ -63,7 +63,7 @@ if (isset($_SESSION["user_id"])) {
                         <small class="text-muted"><?= (@$user_email) ?></small>
                     </li>
                     <li>
-                        <hr class="dropdown-divider"> 
+                        <hr class="dropdown-divider">
                     </li>
                     <li><a class="dropdown-item" href="edit_profile.php">Edit Profile</a></li>
                     <li><a class="dropdown-item text-danger" href="../logout.php">Logout</a></li>
